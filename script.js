@@ -1,64 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const yesBtn = document.getElementById('yes-btn');
-    const noBtn = document.getElementById('no-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const sentenceDisplay = document.getElementById('sentence-display');
     const body = document.body;
-    const responseMessage = document.getElementById('response-message');
-    const questionText = document.getElementById('question-text');
 
-    yesBtn.addEventListener('click', () => {
-        // Change to happy theme
-        body.classList.remove('gloomy-theme');
-        body.classList.add('happy-theme');
+    const sentences = [
+        "Every moment with you feels like a beautiful dream coming true. ✨",
+        "Your smile is the only sunshine I'll ever need. ☀️",
+        "I find myself falling for you a little more every single day. 💖",
+        "In a room full of art, I'd still stare at you. 🎨",
+        "You make even the most ordinary moments feel extraordinary. 🌟",
+        "You are the best thing(my object) that ever happened to me int IMT ",
+        "Thinking of you keeps me awake. Dreaming of you keeps me asleep. Being with you keeps me alive. ❤️",
+        "Mein na tujhe maardungi",
+        "GADEDAAAA",
+        "IMMM DRAWWWWWNNNNNN TO YOU",
+        "I LIKEEEEE YOUUUUU",
+        "FUCK.SHIT.FUCK",
+        "THOSE BROWN EYES i just want to stare in them all day long",
+        "Sir phod tu tera??",
+        "I WANTTTT YOUUU",
+        "DONO PHASS GAYE",
+        "I wont give up ever on you ever"
 
-        // Update UI
-        responseMessage.textContent = "Yay! Can't wait! 🥰";
-        responseMessage.classList.remove('d-none', 'text-danger');
-        responseMessage.classList.add('text-success');
+    ];
 
-        // Optional: Confetti or celebration effect could go here
-        yesBtn.innerHTML = "It's a Date! 🎉";
-        noBtn.style.display = 'none'; // Hide the no button
+    let lastIndex = -1;
 
-        createExcitement();
-    });
+    function getRandomSentence() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * sentences.length);
+        } while (newIndex === lastIndex && sentences.length > 1);
 
-    noBtn.addEventListener('click', () => {
-        // Change to gloomy theme
-        body.classList.remove('happy-theme');
-        body.classList.add('gloomy-theme');
+        lastIndex = newIndex;
+        return sentences[newIndex];
+    }
 
-        // Update UI
-        responseMessage.textContent = "Oh... maybe next time? 🌧️";
-        responseMessage.classList.remove('d-none', 'text-success');
-        responseMessage.classList.add('text-light'); // Make text readable on dark bg
+    function updateSentence() {
+        // Fade out
+        sentenceDisplay.classList.remove('fade-in');
+        sentenceDisplay.classList.add('fade-out');
 
-        // Clear any existing emojis
-        const existingEmojis = document.querySelectorAll('.floating-emoji');
-        existingEmojis.forEach(e => e.remove());
-    });
+        setTimeout(() => {
+            sentenceDisplay.textContent = getRandomSentence();
+            // Fade in
+            sentenceDisplay.classList.remove('fade-out');
+            sentenceDisplay.classList.add('fade-in');
+
+            // Background shift
+            const hue = Math.floor(Math.random() * 360);
+            body.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 90%) 0%, hsl(${(hue + 40) % 360}, 70%, 95%) 100%)`;
+
+            createFloatingHearts();
+        }, 400);
+    }
+
+    nextBtn.addEventListener('click', updateSentence);
 });
 
-function createExcitement() {
-    const emojis = ['🥰', '😍', '🎉', '💖', '🤩', '✨', '💘'];
+function createFloatingHearts() {
+    const emojis = ['💖', '✨', '🌸', '🥰', '🕊️', '💗'];
     const container = document.body;
 
-    // Create 100 emojis
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 15; i++) {
         const emoji = document.createElement('div');
         emoji.classList.add('floating-emoji');
         emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-        // Random positioning and delay
         emoji.style.left = Math.random() * 100 + 'vw';
-        emoji.style.animationDuration = (Math.random() * 3 + 2) + 's'; // 2-5s duration
-        emoji.style.animationDelay = Math.random() * 0.5 + 's'; // Short delay for immediate effect
-        emoji.style.fontSize = (Math.random() * 2 + 1.5) + 'rem'; // Random size
+        emoji.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        emoji.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        emoji.style.bottom = '-50px';
 
         container.appendChild(emoji);
 
-        // Cleanup after animation
         setTimeout(() => {
             emoji.remove();
-        }, 6000);
+        }, 4000);
     }
 }

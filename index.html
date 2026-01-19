@@ -4,38 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Question</title>
+    <title>Random Moments</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="d-flex flex-column align-items-center justify-content-center vh-100 transition-bg">
-    <div class="container text-center">
-        <h2 class="mb-4 fw-semibold text-dark display-6" id="greeting-text">
+    <div class="container text-center mb-4">
+        <h2 class="fw-semibold text-dark display-6 greeting-fade" id="greeting-text">
             Hi Ishikaa 👋
         </h2>
     </div>
 
     <div class="container text-center">
-        <div class="card shadow-lg p-5 border-0 rounded-4 glass-effect">
-            <h1 class="display-4 fw-bold mb-5" id="question-text">Can I take you out on a date this week?</h1>
-
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-lg btn-success px-5 py-3 fw-bold rounded-pill transition-transform"
-                    id="yes-btn">
-                    YES! 😊
-                </button>
-                <button type="button"
-                    class="btn btn-lg btn-secondary px-5 py-3 fw-bold rounded-pill transition-transform" id="no-btn">
-                    No... 😢
-                </button>
+        <div class="card shadow-lg p-5 border-0 rounded-5 glass-effect mx-auto" style="max-width: 600px;">
+            <div class="sentence-container mb-5">
+                <h1 class="display-5 fw-bold sentence-text" id="sentence-display">Click the button for a surprise!</h1>
             </div>
 
-            <div id="response-message" class="mt-4 fs-4 fw-bold d-none"></div>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <button type="button"
+                    class="btn btn-lg btn-primary px-5 py-3 fw-bold rounded-pill transition-transform main-btn"
+                    id="next-btn">
+                    Next Sentence ✨
+                </button>
+            </div>
         </div>
     </div>
 
